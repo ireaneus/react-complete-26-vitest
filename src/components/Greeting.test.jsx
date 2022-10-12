@@ -1,18 +1,3 @@
-# react-complete-26-vitest
-
-## @testing-library/user-event
-
-[https://testing-library.com/docs/user-event/intro]
-
-## @testing-library/react
-
-[https://testing-library.com/docs/react-testing-library/api]
-
-## testing using vitest
-
-[https://vitest.dev/api/#describe]
-
-```js
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -55,6 +40,3 @@ describe('Greeting Component tests', () => {
     expect(outputElement).toBeDefined();
   });
 });
-```
-
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-bj7ech)
