@@ -54,6 +54,42 @@ describe('Greeting Component tests', () => {
     const outputElement = screen.getByText('Changed Text');
     expect(outputElement).toBeDefined();
   });
+
+  test('paragraph does not render "some info"', async () => {
+    const user = userEvent.setup();
+
+    // Arrange
+    render(<Greeting />);
+
+    // Act
+    // if button was clicked
+    await user.click(screen.getByRole('button'));
+
+    // Assert
+    const outputElement = screen.queryByText('some info', { exact: false });
+    expect(outputElement).toBeNull();
+  });
+});
+```
+
+## Mock testing used for fetch
+
+```js
+import { describe, expect, test } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import Async from './Async';
+
+describe('Async Component test', () => {
+  test('renders posts if succeeded', async () => {
+    window.fetch = vitest.fn();
+    window.fetch.mockResolvedValueOnce({
+      json: async () => [{ id: 'p1', title: 'First Post' }],
+    });
+    render(<Async />);
+
+    const listItemElements = await screen.findAllByRole('listitem');
+    expect(listItemElements).not.toHaveLength(0);
+  });
 });
 ```
 

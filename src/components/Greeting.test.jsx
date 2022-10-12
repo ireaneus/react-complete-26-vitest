@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Greeting from './Greeting';
 
-describe('Greeting Component tests', () => {
+describe('Greeting Component tests(4)', () => {
   test('renders Greetings as a heading', () => {
     // Arrange
     render(<Greeting />);
@@ -38,5 +38,20 @@ describe('Greeting Component tests', () => {
     // Assert
     const outputElement = screen.getByText('Changed Text');
     expect(outputElement).toBeDefined();
+  });
+
+  test('paragraph does not render "some info"', async () => {
+    const user = userEvent.setup();
+
+    // Arrange
+    render(<Greeting />);
+
+    // Act
+    // if button was clicked
+    await user.click(screen.getByRole('button'));
+
+    // Assert
+    const outputElement = screen.queryByText('some info', { exact: false });
+    expect(outputElement).toBeNull();
   });
 });
